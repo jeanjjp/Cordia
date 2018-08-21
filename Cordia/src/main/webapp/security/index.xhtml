@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:x="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition template="../Menu.xhtml">
+
+	<ui:define name="conteudo">
+
+
+	<div class="row">
+		<div class="container">
+			<br/>
+			<br/>
+			
+			<div class="col s6 left">
+				<div class="col s12">
+					<a class="waves-effect waves-light btn grey darken-1 tooltipped" data-position="top" data-tooltip="Voltar"><i class="material-icons left">arrow_back</i>Voltar</a>
+				</div>
+			</div>	
+		
+			<div class="col s6 right">
+				<div class="col s12">
+					<a class="waves-effect waves-light btn grey darken-1 right tooltipped" data-position="top" data-tooltip="Sair"><i class="material-icons right">close</i>Sair</a>
+				</div>
+			</div>	
+		
+			<div class="col s12">
+				<h4 class="light center">Olá, <h:outputText value="#{loginController.cliente.nomeCliente}"></h:outputText></h4>
+			</div>			
+			
+		
+			
+		
+			<div class ="col s12">
+			<br/>
+			
+				<h:form>
+				
+					<h:commandLink style="text-decoration:none;color:black;" action="#{loginController.verProduto}">
+						<f:setPropertyActionListener value="#{produto}" target="#{loginController.produto}"></f:setPropertyActionListener>
+						<div class="col s6">
+							<div class="col s12 grey darken-1 hoverable">
+								<h4 class="light center white-text truncate">Cadastrar</h4>
+								<h2 class="center light-black-text">
+									<i class="material-icons large blue-text text-darken-1">add</i>
+								</h2>
+							</div>
+						</div>
+					</h:commandLink> 
+			
+					<h:commandLink style="text-decoration:none;color:black;" action="#{loginController.verProduto}">
+						<f:setPropertyActionListener value="#{produto}" target="#{loginController.produto}"></f:setPropertyActionListener>
+						<div class="col s6">
+							<div class="col s12 grey darken-1 hoverable">
+								<h4 class="light center white-text truncate">Buscar</h4>
+								<h2 class="center light-black-text">
+									<i class="material-icons large blue-text text-darken-1">search</i>
+								</h2>
+							</div>
+						</div>
+					</h:commandLink> 
+					
+				</h:form>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	
+	</ui:define>
+
+</ui:composition>
+
+</html>
