@@ -61,18 +61,12 @@
 			<div class="nav-wrapper container">
 				<a id="logo-container" href="#{request.contextPath}/inicio.xhtml" class="brand-logo">C-Help <i class="material-icons blue-text darken-2" style="font-size:50px; margin-right:10px;">call</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#{request.contextPath}/index.xhtml">Início</a></li>
-					<li><a class="modal-trigger" href="#modal1">Cadastre-se</a></li>
-					<li><a href="#{request.contextPath}/Sobre.xhtml">Como funciona</a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente > 0}" value="Meu perfil"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente != null}" value="Sair"></h:outputText> </a></li>
 					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente == null}" value="Entrar"></h:outputText> </a></li>
 				</ul>
 
 				<ul id="nav-mobile" class="side-nav">
-					<li><a href="#{request.contextPath}/inicio.xhtml">Início</a></li>
-					<li><a class="modal-trigger" href="#modal1">Cadastre-se</a></li>
-					<li><a href="#{request.contextPath}/Sobre.xhtml">Como funciona</a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente > 0}" value="Meu perfil"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente != 0}" value="Sair"></h:outputText> </a></li>
 					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente == null}" value="Entrar"></h:outputText> </a></li>
 				</ul>
 				<a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
@@ -130,7 +124,9 @@
 
 	<!--  FOOTER -->
 	<footer class="footer white lighten-2 z-depth-2">
-	
+		<div class="col s12">
+			<h6 class="light center">Cordia do Brasil 2018, todos direitos reservados </h6>
+		</div>
 	</footer>
 	<!--  /FOOTER -->
 

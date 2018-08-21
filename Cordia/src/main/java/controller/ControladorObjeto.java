@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import dao.ObjetoDAO;
 import model.Codigo;
 import model.Objeto;
 
+
 @ManagedBean 
 public class ControladorObjeto implements Serializable {
 
@@ -17,6 +19,8 @@ public class ControladorObjeto implements Serializable {
 	private Objeto objeto = new Objeto();
 	private Codigo codigo = new Codigo();
 	private String codigoString;
+	
+	private ArrayList<String> lista = new ArrayList<String>();
 	
 	
 	
@@ -37,6 +41,17 @@ public class ControladorObjeto implements Serializable {
 	public String imprimir(){
 		this.codigoString = Integer.toString(this.getCodigo().getIdCodigo())+this.getCodigo().getCodigo();
 		return "Imprimir.xhtml";
+	}
+	
+	public void teste(){
+		lista.add("cliente1");
+		lista.add("cliente2");
+		lista.add("cliente3");
+		lista.add("cliente4");
+		lista.add("cliente5");
+		lista.add("cliente6");
+		lista.add("cliente7");
+		
 	}
 	
 	
@@ -64,6 +79,14 @@ public class ControladorObjeto implements Serializable {
 
 	public void setCodigoString(String codigoString) {
 		this.codigoString = codigoString;
+	}
+
+	public ArrayList<String> getLista() {
+		return lista;
+	}
+
+	public void setLista(ArrayList<String> lista) {
+		this.lista = lista;
 	}
 
 	
