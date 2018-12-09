@@ -7,10 +7,10 @@ import java.sql.SQLException;
 public class ConexaoBanco {
 
 	public Connection getConnection() {
-		String nomeBD = "db_achei";
-		String servidor = "jdbc:mysql://db-achei.mysql.uhserver.com/" + nomeBD;
-		String usuario = "mirrordin";
-		String senha = "Jjp937207@";
+		String nomeBD = "Cordia";
+		String servidor = "jdbc:mysql://localhost/" + nomeBD;
+		String usuario = "root";
+		String senha = "";
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

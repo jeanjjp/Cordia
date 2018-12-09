@@ -5,8 +5,7 @@ import java.net.MalformedURLException;
 
 
 import model.Cliente;
-import model.Codigo;
-import util.Criptografia;
+
 
 
 public class test {
@@ -30,7 +29,7 @@ public class test {
 		//teste de codigo
 		//Codigo c = new Codigo();
 		//System.out.println(c.gerarCodigo());
-		System.out.println(Criptografia.criptografar("jjp937207"));
+
 	}
 
 }

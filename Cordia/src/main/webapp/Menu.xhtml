@@ -20,7 +20,7 @@
  	<meta property="og:description"   content="Código achei." />
   	<meta property="og:image"         content="http://2.bp.blogspot.com/-lg1T3y25hYQ/UA1XschP9mI/AAAAAAAAR1g/9tR6jGxmx_U/s1600/Captura-de-tela-2012-07-16-às-12.12.29.png" />
   	
-	<title>Cordia</title>
+	<title>Fernando</title>
 
 	<!-- CSS  -->
 	<link href="#{request.contextPath}/css/style.css" rel="stylesheet" media="screen" />
@@ -59,15 +59,15 @@
 		<div class="navbar-fixed">
 		<nav class="grey darken-1" role="navigation">
 			<div class="nav-wrapper container">
-				<a id="logo-container" href="#{request.contextPath}/inicio.xhtml" class="brand-logo">C-Help <i class="material-icons blue-text darken-2" style="font-size:50px; margin-right:10px;">call</i></a>
+				<a id="logo-container" href="#{request.contextPath}/inicio.xhtml" class="brand-logo">F-Help <i class="material-icons blue-text darken-2" style="font-size:50px; margin-right:10px;">call</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente != null}" value="Sair"></h:outputText> </a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente == null}" value="Entrar"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/inicio.xhtml"><h:outputText rendered="#{loginController.adm.idAdm > 0}" value="Sair"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
 				</ul>
 
 				<ul id="nav-mobile" class="side-nav">
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente != 0}" value="Sair"></h:outputText> </a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.cliente.idCliente == null}" value="Entrar"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm != 0}" value="Sair"></h:outputText> </a></li>
+					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
 				</ul>
 				<a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
 			</div>
@@ -125,7 +125,7 @@
 	<!--  FOOTER -->
 	<footer class="footer white lighten-2 z-depth-2">
 		<div class="col s12">
-			<h6 class="light center">Cordia do Brasil 2018, todos direitos reservados </h6>
+			<h6 class="light center">2018, todos direitos reservados </h6>
 		</div>
 	</footer>
 	<!--  /FOOTER -->

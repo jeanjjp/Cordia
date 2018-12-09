@@ -8,20 +8,19 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import dao.ClienteDAO;
-import dao.NotificacaoDAO;
-import model.Cliente;
-import model.Notificacao;
+
+import dao.AdmDAO;
+import model.Adm;
+
 
 @ManagedBean
 @SessionScoped
 public class LoginController implements Serializable {
 
 	private static final long serialVersionUID = 1652049856110915048L;
-	private Cliente cliente;
+	private Adm adm;
 	private String loginInformado;
 	private String senhaInformada;
-	private int quantidadeNotificacoes;
 
 	public LoginController() {
 		super();
@@ -36,12 +35,9 @@ public class LoginController implements Serializable {
 		String paginaDestino;
 
 		// Chamar o DAO para verificar se o login e a senha est�o corretos
-		ClienteDAO dao = new ClienteDAO();
-		Cliente clienteFazendoLogin = dao.verificaLogin(loginInformado, senhaInformada);
-
-		// tirar isso quando for implantar
-		clienteFazendoLogin = new Cliente();
-		clienteFazendoLogin.setNomeCliente("Boca mole");
+		AdmDAO dao = new AdmDAO();
+		
+		Adm admFazendoLogin = dao.verificaLogin(loginInformado, senhaInformada);
 		
 		// Obtem a Sessao
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -49,9 +45,9 @@ public class LoginController implements Serializable {
 
 		HttpSession sessao = request.getSession();
 		// Caso sim:
-		if (clienteFazendoLogin != null) {
+		if (admFazendoLogin != null) {
 			// Adicionar a pessoa na Session
-			sessao.setAttribute("clientelogado", clienteFazendoLogin);
+			sessao.setAttribute("admLogado", admFazendoLogin);
 
 			// encaminhar para a p�gina de sucesso
 			paginaDestino = "security/index.xhtml";
@@ -61,32 +57,12 @@ public class LoginController implements Serializable {
 			// Caso contr�rio: encaminhar para a p�gina de erro
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Nome de usuário ou senha inválidos.", ""));
-			paginaDestino = "Entrar.xhtml";
+			paginaDestino = "inicio.xhtml";
 		}
 
 		return paginaDestino;
 	}
 
-	public Cliente getCliente() {
-
-		if (this.cliente == null) {
-			cliente = new Cliente();
-			FacesContext context = FacesContext.getCurrentInstance();
-			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-			HttpSession sessao = request.getSession();
-			cliente = (Cliente) sessao.getAttribute("clientelogado");
-		}else{
-			FacesContext context = FacesContext.getCurrentInstance();
-			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-			HttpSession sessao = request.getSession();
-			cliente = (Cliente) sessao.getAttribute("clientelogado");
-		}
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
 
 	public String sair() {
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -115,22 +91,27 @@ public class LoginController implements Serializable {
 		this.senhaInformada = senhaInformada;
 	}
 
-	public int getQuantidadeNotificacoes() {
-		Cliente cliente = this.getCliente();
-		this.setQuantidadeNotificacoes(0);
-		if(cliente.getListaNotificacao() != null){
-			for (int i = 0; i < cliente.getListaNotificacao().size(); i++) {
-				if(cliente.getListaNotificacao().get(i).getSituacao() == 0){
-					this.quantidadeNotificacoes +=1;
-				}
-			}
+	public Adm getAdm() {
+		if (this.adm == null) {
+			adm = new Adm();
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			HttpSession sessao = request.getSession();
+			adm = (Adm) sessao.getAttribute("admLogado");
+		}else{
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			HttpSession sessao = request.getSession();
+			adm = (Adm) sessao.getAttribute("admLogado");
 		}
-		
-		return quantidadeNotificacoes;
+		return adm;
 	}
 
-	public void setQuantidadeNotificacoes(int quantidadeNotificacoes) {
-		this.quantidadeNotificacoes = quantidadeNotificacoes;
+	public void setAdm(Adm adm) {
+		this.adm = adm;
 	}
+
+
+	
 
 }

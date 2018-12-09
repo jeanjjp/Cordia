@@ -12,22 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.Cliente;
+import model.Adm;
 
 public class FiltroLogin implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		Cliente pessoa = null;
+		Adm adm = null;
 		
 		HttpSession sessao = ((HttpServletRequest) request).getSession();
 
 		if (sessao != null) {
-			pessoa = (Cliente) sessao.getAttribute("clientelogado");
+			adm = (Adm) sessao.getAttribute("admLogado");
 		}
 
-		if (pessoa == null || sessao ==null) {
+		if (adm == null || sessao ==null) {
 			String contextPath = ((HttpServletRequest) request).getContextPath();
 			((HttpServletResponse) response).sendRedirect(contextPath);
 		} else {

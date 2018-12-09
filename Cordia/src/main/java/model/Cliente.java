@@ -1,22 +1,19 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Cliente {
 
 	private int idCliente;
 	private String nomeCliente;
 	private String sobrenomeCliente;
-	private String emailCliente;
-	private String senhaCliente;
-	private Date dataNascimenteCliente;
-	private int qtCodigoGratis;
-	private Endereco endereco;
-	private Contato contato;
-	private ArrayList<Codigo> listaCodigos;
-	private ArrayList<Notificacao> listaNotificacao;
-	private String caminhoImg;
+	private String telefone1;
+	private String telefone2;
+	private String email;
+	private ArrayList<Doenca> listaDeDoencas;
+	private ArrayList<Remedio> listaDeRemedios;
+	private ArrayList<Cirurgia> listaDeCirurgias;
+	private ArrayList<Consulta> listaDeConsultas;
 	
 	
 	
@@ -38,61 +35,48 @@ public class Cliente {
 	public void setSobrenomeCliente(String sobrenomeCliente) {
 		this.sobrenomeCliente = sobrenomeCliente;
 	}
-	public String getEmailCliente() {
-		return emailCliente;
+	public String getTelefone1() {
+		return telefone1;
 	}
-	public void setEmailCliente(String emailCliente) {
-		this.emailCliente = emailCliente;
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
 	}
-	public String getSenhaCliente() {
-		return senhaCliente;
+	public String getTelefone2() {
+		return telefone2;
 	}
-	public void setSenhaCliente(String senhaCliente) {
-		this.senhaCliente = senhaCliente;
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
 	}
-	public Date getDataNascimenteCliente() {
-		return dataNascimenteCliente;
+	public String getEmail() {
+		return email;
 	}
-	public void setDataNascimenteCliente(Date dataNascimenteCliente) {
-		this.dataNascimenteCliente = dataNascimenteCliente;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public int getQtCodigoGratis() {
-		return qtCodigoGratis;
+	public ArrayList<Doenca> getListaDeDoencas() {
+		return listaDeDoencas;
 	}
-	public void setQtCodigoGratis(int qtCodigoGratis) {
-		this.qtCodigoGratis = qtCodigoGratis;
+	public void setListaDeDoencas(ArrayList<Doenca> listaDeDoencas) {
+		this.listaDeDoencas = listaDeDoencas;
 	}
-	public Endereco getEndereco() {
-		return endereco;
+	public ArrayList<Remedio> getListaDeRemedios() {
+		return listaDeRemedios;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setListaDeRemedios(ArrayList<Remedio> listaDeRemedios) {
+		this.listaDeRemedios = listaDeRemedios;
 	}
-	public Contato getContato() {
-		return contato;
+	public ArrayList<Cirurgia> getListaDeCirurgias() {
+		return listaDeCirurgias;
 	}
-	public void setContato(Contato contato) {
-		this.contato = contato;
+	public void setListaDeCirurgias(ArrayList<Cirurgia> listaDeCirurgias) {
+		this.listaDeCirurgias = listaDeCirurgias;
 	}
-	public ArrayList<Codigo> getListaCodigos() {
-		return listaCodigos;
+	public ArrayList<Consulta> getListaDeConsultas() {
+		return listaDeConsultas;
 	}
-	public void setListaCodigos(ArrayList<Codigo> listaCodigos) {
-		this.listaCodigos = listaCodigos;
+	public void setListaDeConsultas(ArrayList<Consulta> listaDeConsultas) {
+		this.listaDeConsultas = listaDeConsultas;
 	}
-	public ArrayList<Notificacao> getListaNotificacao() {
-		return listaNotificacao;
-	}
-	public void setListaNotificacao(ArrayList<Notificacao> listaNotificacao) {
-		this.listaNotificacao = listaNotificacao;
-	}
-	public String getCaminhoImg() {
-		return caminhoImg;
-	}
-	public void setCaminhoImg(String caminhoImg) {
-		this.caminhoImg = caminhoImg;
-	}
-	
 	
 	
 }
