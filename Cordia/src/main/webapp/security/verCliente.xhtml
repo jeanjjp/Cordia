@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:x="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<ui:composition template="../Menu.xhtml">
+
+	<ui:define name="conteudo">
+		<div class="row">
+		
+		</div>
+		
+		
+		
+		<div class="container">
+
+			<div class="row borda">
+				<div class="col s12 valign-wrapper">
+					<div class="col s3">
+						<a class="btn blue darken-1 tooltipped" data-position="bottom"
+							data-tooltip="Voltar" href="listaClientes.xhtml"> <i
+							class="material-icons">arrow_back</i></a>
+					</div>
+
+
+					<div class="col s6">
+						<h5 class="light center">Paciente</h5>
+					</div>
+
+					<div class="col s3">
+						<a class="modal-trigger btn blue darken-1 right tooltipped waves-effect"
+								data-position="bottom" data-tooltip="Editar paciente"
+								href="#modal-altera-cliente"><i class="material-icons">account_box</i></a>
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<div class="row">
+				<div class="col s12">
+					<div class="col m6 s12">
+						<h5 class=" center light">
+							<h:outputText
+								value="#{clienteController.cliente.nomeCliente} #{clienteController.cliente.sobrenomeCliente}"></h:outputText>
+						</h5>
+					</div>
+					<div class="col m6 s12">
+						<h5 class=" center light">
+							<h:outputText value="#{clienteController.cliente.email}"></h:outputText>
+						</h5>
+					</div>
+					<div class="col s6 ">
+						<h5 class=" center light">
+							<h:outputText value="#{clienteController.cliente.telefone1}"></h:outputText>
+						</h5>
+					</div>
+					<div class="col s6 ">
+						<h5 class=" center light">
+							<h:outputText value="#{clienteController.cliente.telefone2}"></h:outputText>
+						</h5>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+	<!-- 										DOENCA REMEDIO CIRURGIA														 -->
+
+
+
+
+
+
+			<div class="row">
+			
+				<div class="col s12">
+					<div class="col m4 s12  ">
+
+						<div class="col s12">
+							<h5 class="col s8 light">Doenças</h5>
+							<a class="modal-trigger btn blue darken-1 col s2 right waves-effect"
+								href="#modal-add-doenca">+</a>
+						</div>
+
+						<hr />
+
+						<div class="col s12 lista">
+							<h:dataTable value="#{clienteController.cliente.listaDeDoencas}"
+								var="doenca" class="responsive-table striped centered">
+
+								<h:column>
+									<f:facet name="header"></f:facet>
+									<h6 class="left">
+										<h:outputText value="#{doenca.nomeDoenca}" />
+									</h6>
+								</h:column>
+
+								<!-- botao para confirmacao de exclusão de task -->
+								<h:column>
+									<h:form>
+										<h:commandButton value="-"
+											action="#{clienteController.deletarDoenca}"
+											styleClass="btn blue darken-1 col s2 m4 right">
+											<f:setPropertyActionListener value="#{doenca}"
+												target="#{clienteController.doenca}"></f:setPropertyActionListener>
+										</h:commandButton>
+
+									</h:form>
+								</h:column>
+
+							</h:dataTable>
+						</div>
+
+					</div>
+
+
+
+					<div class="col m4 s12  ">
+
+						<div class="col s12">
+							<h5 class="col s8 light">Remédios</h5>
+							<a class="modal-trigger btn blue darken-1 col s2 right waves-effect"
+								href="#modal-add-remedio">+</a>
+						</div>
+
+						<hr />
+
+						<div class="col s12 lista">
+							<h:dataTable value="#{clienteController.cliente.listaDeRemedios}"
+								var="remedio" class="responsive-table striped centered">
+
+								<h:column>
+									<f:facet name="header"></f:facet>
+									<h6 class="left">
+										<h:outputText value="#{remedio.nomeRemedio}" />
+									</h6>
+								</h:column>
+
+								<!-- botao para confirmacao de exclusão de task -->
+								<h:column>
+									<h:form>
+										<h:commandButton value="-"
+											action="#{clienteController.deletarRemedio}"
+											styleClass="btn blue darken-1 col s2 m4 right">
+											<f:setPropertyActionListener value="#{remedio}"
+												target="#{clienteController.remedio}"></f:setPropertyActionListener>
+										</h:commandButton>
+
+									</h:form>
+								</h:column>
+
+							</h:dataTable>
+						</div>
+
+					</div>
+
+					<div class="col m4 s12  ">
+
+						<div class="col s12">
+							<h5 class="col s8 light">Cirurgias</h5>
+							<a class="modal-trigger btn blue darken-1 col s2 right waves-effect"
+								href="#modal-add-cirurgia">+</a>
+						</div>
+
+						<hr />
+
+						<div class="col s12 lista">
+							<h:dataTable
+								value="#{clienteController.cliente.listaDeCirurgias}"
+								var="cirurgia" class="responsive-table striped centered">
+
+								<h:column>
+									<f:facet name="header"></f:facet>
+									<h6 class="left">
+										<h:outputText value="#{cirurgia.nomeCirigia}" />
+									</h6>
+								</h:column>
+
+								<!-- botao para confirmacao de exclusão de task -->
+								<h:column>
+									<h:form>
+										<h:commandButton value="-"
+											action="#{clienteController.deletarCirurgia}"
+											styleClass="btn blue darken-1 col s2 m4 right">
+											<f:setPropertyActionListener value="#{cirurgia}"
+												target="#{clienteController.cirurgia}"></f:setPropertyActionListener>
+										</h:commandButton>
+
+									</h:form>
+								</h:column>
+
+							</h:dataTable>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+	<!-- 										ULTIMA CONSULTA														 -->
+
+
+
+
+
+
+			<br />
+
+
+			<div class="row borda">
+				
+				<div class="col s12 valign-wrapper">
+				
+					<div class="col s3">
+						<a class="modal-trigger btn blue darken-1 tooltipped waves-effect"
+							data-position="bottom" data-tooltip="Cadastrar nova consulta"
+							href="#modal-add-consulta" >+</a>
+					</div>
+					
+					<div class = "col s6">
+						<h5 class="light center">Última Consulta</h5>
+					</div>
+					
+					<div class = "col s3">
+						<a class="modal-trigger btn blue darken-1 right tooltipped waves-effect"
+							data-position="bottom" data-tooltip="Editar Consulta"
+							href="#modal-alterar-consulta"><i class="material-icons">edit</i></a>
+					</div>		
+					
+				</div>
+				
+						
+				
+			</div>
+
+			<div class="row ">
+				<div class="col s12">
+					<div class="col m10 s12 lista">
+						<h6 class=" left ">
+							Queixa Pricipal:
+							<h:outputText styleClass="light"
+								value="#{clienteController.consulta.queixaPrimaria}"></h:outputText>
+						</h6>
+					</div>
+					<div class="col m2 s12 ">
+						<h6 class="right ">
+							Data:
+							<h:outputText value="#{clienteController.consulta.dataConsulta}">	<f:convertDateTime pattern="dd/MM/yyyy" /></h:outputText>
+						</h6>
+					</div>
+					<div class="col m12 s12 lista">
+						<h6 class=" left ">
+							Queixa secundária:
+							<h:outputText styleClass="light"
+								value="#{clienteController.consulta.queixaSecundaria}"></h:outputText>
+						</h6>
+					</div>
+					<div class="col m12 s12 lista">
+						<h6 class=" left ">
+							Avaliação:
+							<h:outputText styleClass="light"
+								value="#{clienteController.consulta.avaliacao}"></h:outputText>
+						</h6>
+					</div>
+					<div class="col m12 s12 lista ">
+						<h6 class=" left ">
+							Evolução:
+							<h:outputText styleClass="light"
+								value="#{clienteController.consulta.resultado}"></h:outputText>
+						</h6>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+	<!-- 										HITORICO														 -->
+
+
+
+
+
+
+
+
+
+
+
+			<div class="row borda">
+				<div class="col s12 valign-wrapper">
+					<div class = "col s12">
+						<h5 class="light center">Histórico</h5>
+					</div>
+				</div>
+			</div>
+
+
+
+		<div class="row ">
+			<div class="col s12 m12">
+				<h:dataTable value="#{clienteController.cliente.listaDeConsultas}" var="consulta"
+					class="responsive-table striped centered">
+				
+					<h:column>
+						<f:facet name="header">Queixa Principal</f:facet>
+						<h:outputText class="truncate" style="width:200px;" value="#{consulta.queixaPrimaria}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Queixa Secundária</f:facet>
+						<h:outputText class="truncate" style="width:200px;" value="#{consulta.queixaSecundaria}">
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Resultado</f:facet>
+						<h:outputText class="truncate" style="width:200px;"  value="#{consulta.resultado}">
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Data</f:facet>
+						<h:outputText value="#{consulta.dataConsulta}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</h:column>
+
+					<!-- botao para edicaoo de task -->
+					<h:column>
+						<h:form>
+
+							<h:commandButton value="VER"
+								action="#{clienteController.verConsulta}"
+								styleClass="btn blue darken-1 col s9 m9">
+								<f:setPropertyActionListener value="#{consulta}"
+									target="#{clienteController.consulta}"></f:setPropertyActionListener>
+								<br />
+							</h:commandButton>
+
+						</h:form>
+					</h:column>
+
+					<!-- botao para confirmacao de exclusão de task -->
+					<h:column>
+						<h:form>
+							<h:commandButton value="Deletar"
+								action="#{clienteController.deletarConsulta}"
+								styleClass="btn blue darken-1 col s9 m9">
+								<f:setPropertyActionListener value="#{consulta}"
+									target="#{clienteController.consulta}"></f:setPropertyActionListener>
+							</h:commandButton>
+
+						</h:form>
+					</h:column>
+					
+				</h:dataTable>
+			</div>
+	</div>
+
+
+
+
+
+
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+			<div class="row">
+				<div class="col s12"></div>
+			</div>
+
+
+
+
+
+
+
+	<!-- 										MODALS														 -->
+
+
+
+
+
+
+			<!-- Janela modal para cadastrar doenca -->
+			<div id="modal-add-doenca" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Cadastrar Doença</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="NomeDoenca" validatorMessage="Nome Inválido"
+										requiredMessage="Nome Inválido" required="true"
+										autocomplete="false"
+										value="#{clienteController.doenca.nomeDoenca}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="Nome" data-error="Nome Inválido" data-success="OK.">Nome
+										da Doença</label>
+								</div>
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Cadastrar" action="#{clienteController.cadastrarDoenca}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Janela modal para cadastrar remedio -->
+			<div id="modal-add-remedio" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Cadastrar Remédio</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="NomeRemedio" validatorMessage="Nome Inválido"
+										requiredMessage="Nome Inválido" required="true"
+										autocomplete="false"
+										value="#{clienteController.remedio.nomeRemedio}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="Nome" data-error="Nome Inválido" data-success="OK.">Nome
+										do Remédio</label>
+								</div>
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Cadastrar" action="#{clienteController.cadastrarRemedio}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Janela modal para cadastrar cirurgia -->
+			<div id="modal-add-cirurgia" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Cadastrar Cirurgia</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="NomeRemedio" validatorMessage="Nome Inválido"
+										requiredMessage="Nome Inválido" required="true"
+										autocomplete="false"
+										value="#{clienteController.cirurgia.nomeCirigia}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="Nome" data-error="Nome Inválido" data-success="OK.">Nome
+										da Cirurgia</label>
+								</div>
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Cadastrar"
+								action="#{clienteController.cadastrarCirurgia}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<!-- Janela modal para altrar dados do cliente -->
+			<div id="modal-altera-cliente" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Alterar Dados</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="Nome" validatorMessage="Nome Inválido"
+										requiredMessage="Nome Inválido" required="true"
+										autocomplete="false"
+										value="#{clienteController.cliente.nomeCliente}">
+										<f:validateLength minimum="2"></f:validateLength>
+									</h:inputText>
+									<label for="Nome" data-error="Nome Inválido" data-success="OK.">Nome</label>
+								</div>
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="sobreNome"
+										validatorMessage="Sobrenome Inválido"
+										requiredMessage="Sobrenome Inválido" required="true"
+										autocomplete="false"
+										value="#{clienteController.cliente.sobrenomeCliente}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="sobreNome" data-error="Sobrenome Inválido"
+										data-success="OK.">Sobreneome</label>
+								</div>
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">local_phone</i>
+									<p:inputMask id="tel1"
+										value="#{clienteController.cliente.telefone1}"
+										mask="(99) 9-9999-999?9" />
+									<label for="tel1" data-error="Sobrenome Inválido"
+										data-success="OK.">Telefone 1</label>
+								</div>
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">local_phone</i>
+									<p:inputMask id="tel2"
+										value="#{clienteController.cliente.telefone2}"
+										mask="(99) 9-9999-999?9" />
+									<label for="tel2" data-error="Sobrenome Inválido"
+										data-success="OK.">Telefone 2</label>
+								</div>
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">mail</i>
+									<h:inputText id="email" 
+										value="#{clienteController.cliente.email}">
+									</h:inputText>
+									<label for="email" data-error="email Inválido"
+										data-success="OK.">Email</label>
+								</div>
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Alterar"
+								action="#{clienteController.cadastrarOuAlterarCliente}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+
+	<!-- Janela modal para add nova consulta -->
+			<div id="modal-add-consulta" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Cadastrar Consulta</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="queixaPrincipal" validatorMessage="Queixa inválida"
+										requiredMessage="Queixa inválida" required="true"
+										autocomplete="false"
+										value="#{clienteController.novaConsulta.queixaPrimaria}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="queixaPrincipal" data-error="Queixa inválida" data-success="OK.">Queixa Principal</label>
+								</div>
+								
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="queixaSecundaria"
+										value="#{clienteController.novaConsulta.queixaSecundaria}">
+									</h:inputText>
+									<label for="queixaSecundaria" data-error="Queixa inválida" data-success="OK.">Queixa Secundária</label>
+								</div>
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputTextarea id="avaliacao"
+										value="#{clienteController.novaConsulta.avaliacao}">
+									</h:inputTextarea>
+									<label for="avaliacao" data-error="Queixa inválida" data-success="OK.">Avaliação</label>
+								</div>
+								
+								
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputTextarea id="resultado"
+										value="#{clienteController.novaConsulta.resultado}">
+									</h:inputTextarea>
+									<label for="resultado" data-error="Queixa inválida" data-success="OK.">Evolução</label>
+								</div>
+								
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Cadastrar" action="#{clienteController.cadastrarConsulta}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			<!-- Janela modal para alterar consulta -->
+			<div id="modal-alterar-consulta" class="modal">
+				<div class="modal-content">
+					<h4 class="light center">Editar Consulta</h4>
+					<div class="row">
+						<h:form class="col s12">
+							<div class="row">
+
+								<!-- input da task -->
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="queixaPrincipal" validatorMessage="Queixa inválida"
+										requiredMessage="Queixa inválida" required="true"
+										autocomplete="false"
+										value="#{clienteController.consulta.queixaPrimaria}">
+										<f:validateLength minimum="4"></f:validateLength>
+									</h:inputText>
+									<label for="queixaPrincipal" data-error="Queixa inválida" data-success="OK.">Queixa Principal</label>
+								</div>
+								
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputText id="queixaSecundaria" 
+										value="#{clienteController.consulta.queixaSecundaria}">
+									</h:inputText>
+									<label for="queixaSecundaria" data-error="Queixa inválida" data-success="OK.">Queixa Secundária</label>
+								</div>
+								
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputTextarea id="avaliacao"
+										value="#{clienteController.consulta.avaliacao}">
+									</h:inputTextarea>
+									<label for="avaliacao" data-error="Queixa inválida" data-success="OK.">Avaliação</label>
+								</div>
+								
+								
+								<div class="input-field col s12">
+									<i class="material-icons prefix">edit</i>
+									<h:inputTextarea id="resultado" 
+										value="#{clienteController.consulta.resultado}">
+									
+									</h:inputTextarea>
+									<label for="resultado" data-error="Queixa inválida" data-success="OK.">Evolução</label>
+								</div>
+								
+								
+
+							</div>
+
+							<!-- Botao e TOAST para informacoes -->
+							<p:growl id="growl" showDetail="false" sticky="false" life="3500" />
+							<h:commandButton id="botao" type="submit"
+								class="btn modal-trigger blue darken-1 col s12"
+								value="Alterar" action="#{clienteController.atualizarConsulta}"></h:commandButton>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			
+
+
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>
