@@ -25,7 +25,6 @@ public class AdmDAO {
 			stmt.setString(1, email);
 			stmt.setString(2, senha);
 			// executa
-			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				adm = new Adm();

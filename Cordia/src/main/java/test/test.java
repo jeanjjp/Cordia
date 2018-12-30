@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import model.Cliente;
+import util.Criptografia;
 
 
 
@@ -31,8 +32,12 @@ public class test {
 		//Codigo c = new Codigo();
 		//System.out.println(c.gerarCodigo());
 		
-		Date dataEnvio = new java.sql.Date(System.currentTimeMillis());
-		System.out.println(dataEnvio);
+//		Date dataEnvio = new java.sql.Date(System.currentTimeMillis());
+//		System.out.println(dataEnvio);
+		
+	
+		
+	Criptografia.criptografar("123");
 		
 	}
 

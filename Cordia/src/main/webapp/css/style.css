@@ -29,6 +29,7 @@
   .borda{
   	border: solid 1px #ccc;
   	border-radius:10px;
+  	width: 100%;
   }
   
   .icon-block {

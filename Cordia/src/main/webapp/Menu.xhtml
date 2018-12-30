@@ -11,14 +11,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="apple-touch-startup-image" href="#{request.contextPath}/icon/launch.png" />
 	<meta name="apple-mobile-web-app-title" content="F-Help" />
-	
-	<meta property="og:url"           content="http://www.codigoachei.online" />
-  	<meta property="og:type"          content="Achei" />
- 	<meta property="og:title"         content="Achei" />
- 	<meta property="og:description"   content="Código achei." />
-  	<meta property="og:image"         content="http://2.bp.blogspot.com/-lg1T3y25hYQ/UA1XschP9mI/AAAAAAAAR1g/9tR6jGxmx_U/s1600/Captura-de-tela-2012-07-16-às-12.12.29.png" />
   	
 	<title>F-Help</title>
 
@@ -61,13 +54,17 @@
 			<div class="nav-wrapper container">
 				<a id="logo-container" href="#{request.contextPath}/inicio.xhtml" class="brand-logo">F-Help <i class="material-icons blue-text darken-2" style="font-size:50px; margin-right:10px;">local_hospital</i></a>
 				<ul class="right hide-on-med-and-down">
-					<li><a href="#{request.contextPath}/inicio.xhtml"><h:outputText rendered="#{loginController.adm.idAdm > 0}" value="Sair"></h:outputText> </a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
+					<h:form>
+						<h:commandLink value="Sair" rendered="#{loginController.adm.idAdm > 0}" action="#{clienteController.sair}"></h:commandLink>
+						<li><a href="#{request.contextPath}/security/listaClientes.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
+					</h:form>
 				</ul>
 
 				<ul id="nav-mobile" class="side-nav">
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm != 0}" value="Sair"></h:outputText> </a></li>
-					<li><a href="#{request.contextPath}/security/Perfil.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
+					<h:form>
+						<h:commandLink value="Sair" rendered="#{loginController.adm.idAdm > 0}" action="#{clienteController.sair}" styleClass="btn red darken-4"></h:commandLink>
+						<li><a href="#{request.contextPath}/security/listaClientes.xhtml"><h:outputText rendered="#{loginController.adm.idAdm == null}" value="Entrar"></h:outputText> </a></li>
+					</h:form>
 				</ul>
 				<a href="#" data-activates="nav-mobile" class="button-collapse right"><i class="material-icons">menu</i></a>
 			</div>
@@ -75,45 +72,6 @@
 		</div>
 	</header>
 	<!--  /MENU -->
-
-	<!-- Modal1 Structure -->
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<h4 class="light center">Cadastre-se</h4>
-			<div class="row">
-				<h:form class="col s12">
-					<div class="row">
-						<div class="input-field col s12">
-							<i class="material-icons prefix">account_circle</i> 
-							<h:inputText id="icon_email" validatorMessage="Digite um e-mail válido" requiredMessage="Digite um e-mail váildo" required="true" autocomplete="false" value="#{controladorCliente.cliente.emailCliente}" >
-								<f:validateLength minimum="8"></f:validateLength>
-							</h:inputText>
-							<label for="icon_email" data-error="Digite um e-mail válido." data-success="OK.">Email</label>
-						</div>
-						
-						<div class="input-field col s12">
-							<i class="material-icons prefix">edit</i> 
-							<h:inputSecret id="icon_senha" validatorMessage="Digite uma senha entre 8 e 10 caracteres" requiredMessage="Digite uma senha válida" required="true" autocomplete="false" value="#{controladorCliente.cliente.senhaCliente}" >
-								<f:validateLength minimum="8" maximum="10"></f:validateLength>
-							</h:inputSecret>
-							<label for="icon_senha" data-error="Digite uma senha entre 8 e 10 caracteres." data-success="OK.">Senha</label>
-						</div>
-					</div>
-					<p:growl id="growl" showDetail="false" sticky="false" life="3500" />  
-					<h:commandButton id="botao" type="submit" class="btn modal-trigger red darken-1 col s12" value="Cadastrar" action="#{controladorCliente.cadastrarCliente}"></h:commandButton>
-				</h:form>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<div class="row">
-				<div class="col s12">
-					<a class="col s6 center-align" href="#{request.contextPath}/security/Perfil.xhtml">Já sou cadastrado</a>
-					<a class="col s6 center-align" href="#{request.contextPath}/EsqueceuSenha.xhtml">Esqueceu sua senha?</a>
-				</div>
-			</div>
-			
-		</div>
-	</div>
 
 
 	<!--  CONTEUDO -->

@@ -8,6 +8,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import dao.CirurgiaDAO;
 import dao.ClienteDAO;
@@ -229,6 +231,17 @@ public class ClienteController implements Serializable {
 		consultaDAO =  null;
 	}
 	
+	
+	public String sair() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+
+		HttpSession sessao = request.getSession();
+
+		sessao.invalidate();
+
+		return "/inicio.xhtml";
+	}
 	
 
 	public ArrayList<Cliente> getListaDeClientes() {
