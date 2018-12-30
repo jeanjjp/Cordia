@@ -3,7 +3,10 @@ package model;
 public class Cirurgia {
 
 	private int idCirurgia;
+	private int idCliente;
 	private String nomeCirigia;
+	
+	
 	public int getIdCirurgia() {
 		return idCirurgia;
 	}
@@ -15,6 +18,12 @@ public class Cirurgia {
 	}
 	public void setNomeCirigia(String nomeCirigia) {
 		this.nomeCirigia = nomeCirigia;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 	
 	

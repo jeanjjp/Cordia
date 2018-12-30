@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import util.ConexaoBanco;
+import model.Cirurgia;
 import model.Cliente;
+import model.Doenca;
+import model.Remedio;
 
 
 public class ClienteDAO {
@@ -24,9 +27,9 @@ public class ClienteDAO {
 		String sql;
 		
 		if (cliente.getIdCliente() <= 0) {
-			sql = "INSERT INTO cliente (nome, sobrenome) VALUES (?, ?)";
+			sql = "INSERT INTO cliente (nome, sobrenome, telefone1, telefone2, email) VALUES (?, ?, ?, ?, ?)";
 		} else {
-			sql = "UPDATE cliente SET nome = ?, sobrenome = ? WHERE idCliente = ?";
+			sql = "UPDATE cliente SET nome = ?, sobrenome = ?, telefone1 = ?, telefone2 = ?, email = ? WHERE idCliente = ?";
 		}
 		
 		try {
@@ -39,6 +42,9 @@ public class ClienteDAO {
 				// seta na string
 				stmt.setString(1, cliente.getNomeCliente());
 				stmt.setString(2, cliente.getSobrenomeCliente());
+				stmt.setString(3, cliente.getTelefone1());
+				stmt.setString(4, cliente.getTelefone2());
+				stmt.setString(5, cliente.getEmail());
 				// excuta
 				stmt.executeUpdate();
 				// retorna o ID inserido no BD
@@ -58,7 +64,10 @@ public class ClienteDAO {
 
 				stmt.setString(1, cliente.getNomeCliente());
 				stmt.setString(2, cliente.getSobrenomeCliente());
-				stmt.setInt(3, cliente.getIdCliente());
+				stmt.setString(3,  cliente.getTelefone1());
+				stmt.setString(4,  cliente.getTelefone2());
+				stmt.setString(5,  cliente.getEmail());
+				stmt.setInt(6, cliente.getIdCliente());
 
 				int ok = stmt.executeUpdate();
 
@@ -82,91 +91,7 @@ public class ClienteDAO {
 		}
 	}
 
-	public boolean atualizarCliente(Cliente cliente) {
-
-		java.sql.Date dataClienteSQL = null;
-		boolean atualizadoSucesso = false;
-		String sql = "UPDATE cliente SET nome_cliente = ?, sobrenome_cliente = ?, data_cliente = ?, qt_codigo_gratis = ? WHERE id_cliente = ?";
-		
-		
-		
-		
-		//Estou adicionando mais um dia na data de nascimento do cliente.
-		//por quê por agum motivo a data inserida vai comuma dia a menos e eu não sei omotivo.
-		//tentar arrumar isso futuramente. 
-		//SQN.
-		
-		//
-		
-		try {
-			this.connection = new ConexaoBanco().getConnection();
-			PreparedStatement stmt = connection.prepareStatement(sql);
-
-			// seta os valores
-
-			stmt.setString(1, cliente.getNomeCliente());
-			stmt.setString(2, cliente.getSobrenomeCliente());
-			stmt.setDate(3, dataClienteSQL);
-
-			stmt.setInt(5, cliente.getIdCliente());
-			
-			// executa
-			int ok = stmt.executeUpdate();
-
-			if (ok == 1) {
-				System.out.println("Cliente atualizado com sucesso no BD!");
-				atualizadoSucesso = true;
-			} else {
-				System.out.println("Erro ao atualizar liente no BD! \n"+ stmt);
-			}
-
-			stmt.close();
-
-			return atualizadoSucesso;
-		} catch (SQLException e) {
-			System.out.println("Erro ao atualizar Pessoa no BD! "+e);
-			throw new RuntimeException(e);
-		} finally {
-			ConexaoBanco.fecharConexao(this.connection);
-		}
-	}
-
 	
-	public Cliente obterCliente(int idCliente) {
-		Cliente cliente = null;
-		
-		String sql = "SELECT * FROM cliente as c INNER JOIN endereco as e ON c.id_cliente = e.endereco_id_cliente INNER JOIN contato as con ON c.id_cliente = con.contato_id_cliente WHERE id_cliente = ?";
-
-		System.out.println("Obtendo Cliente");
-		try {
-			this.connection = new ConexaoBanco().getConnection();
-			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setMaxRows(1);
-			stmt.setInt(1, idCliente);
-			// executa
-			ResultSet rs = stmt.executeQuery();
-			while (rs.next()) {
-				cliente = new Cliente();
-				cliente.setIdCliente(rs.getInt("id_cliente"));
-				cliente.setNomeCliente(rs.getString("nome_cliente"));
-				cliente.setSobrenomeCliente(rs.getString("sobrenome_cliente"));
-				cliente.setEmail(rs.getString("email_cliente"));
-				
-			
-			}
-
-			
-			return cliente;
-
-		} catch (SQLException e) {
-			System.out.println("Erro ao buscar Cliente no BD!");
-			e.printStackTrace();
-			return null;
-			
-		} finally {
-			ConexaoBanco.fecharConexao(this.connection);
-		}
-	}
 	
 	public ArrayList<Cliente> listarClientes(String filtro) {
 
@@ -176,7 +101,7 @@ public class ClienteDAO {
 		if (filtro.equalsIgnoreCase("") || filtro == null) {
 			sql = "SELECT * FROM cliente";
 		}else{
-			sql = "SELECT * FROM cliente WHERE nome LIKE '%"+filtro+"%'";
+			sql = "SELECT * FROM cliente WHERE nome LIKE '%"+filtro+"%' OR telefone1 LIKE '%"+filtro+"%' OR telefone2 LIKE '%"+filtro+"%' OR sobrenome LIKE '%"+filtro+"%' OR email LIKE '%"+filtro+"%'";
 		}
 
 		try {
@@ -189,7 +114,9 @@ public class ClienteDAO {
 				cliente.setIdCliente(rs.getInt("idCliente"));
 				cliente.setNomeCliente(rs.getString("nome"));
 				cliente.setSobrenomeCliente(rs.getString("sobrenome"));
-				
+				cliente.setTelefone1(rs.getString("telefone1"));
+				cliente.setTelefone2(rs.getString("telefone2"));
+				cliente.setEmail(rs.getString("email"));
 				clientes.add(cliente);
 
 			}
@@ -205,7 +132,33 @@ public class ClienteDAO {
 	}
 
 	
-	
+	public boolean deletaCliente(int idCliente) {
+		
+		boolean removidoSucesso = false;
+		String sql = "DELETE FROM cliente WHERE idCliente = ?";
+
+		try {
+			this.connection = new ConexaoBanco().getConnection();
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setInt(1, idCliente);
+			int ok = stmt.executeUpdate();
+
+			if (ok == 1) {
+				System.out.println("Cliente deletado com sucesso");
+				removidoSucesso = true;
+			} else {
+				System.out.println("Erro ao deletar Cliente");
+			}
+
+			stmt.close();
+			return removidoSucesso;
+		} catch (SQLException e) {
+			System.out.println("Erro ao remover Cliente no BD! "+e);
+			throw new RuntimeException(e);
+		}finally {
+			ConexaoBanco.fecharConexao(this.connection);
+		}
+	}
 
 	
 

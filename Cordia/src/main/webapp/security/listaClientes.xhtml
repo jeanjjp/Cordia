@@ -18,6 +18,14 @@
 	<div class="row">
 		<div class="container">
 		
+		<!--SERVE APENAS PARA LIMPAR O CLIENTE DA MEMORIA QUANDOVOLTA DA PAGINA DE CLIENTE -->
+		<h:outputText value="#{clienteController.limparCliente}"></h:outputText>
+		<!--SERVE APENAS PARA LIMPAR O CLIENTE DA MEMORIA QUANDOVOLTA DA PAGINA DE CLIENTE -->
+		
+		
+		
+		
+		
 			<!-- titulo -->
 			<div class="col s12">
 				<h5 class="light center">Lista de clientes</h5>
@@ -36,7 +44,7 @@
 						<div class="input-field col s12">
 							<h:inputText id="procurar" autocomplete="false"
 								value="#{clienteController.ietmDeBusca}" />
-							<label class="center" for="procurar">Nº de conta, nome ou cpf...</label>
+							<label class="center" for="procurar">Nome, telefone, email...</label>
 						</div>
 					</div>
 					
@@ -93,6 +101,29 @@
 								data-success="OK.">Sobreneome</label>
 						</div>
 						
+						<!-- input da task -->
+						<div class="input-field col s12">
+							<i class="material-icons prefix">local_phone</i>
+							<p:inputMask id="tel1" value="#{clienteController.cliente.telefone1}" mask="(99) 9-9999-999?9" />
+							<label for="tel1" data-error="Sobrenome Inválido" data-success="OK.">Telefone 1</label>
+						</div>
+						
+						<!-- input da task -->
+						<div class="input-field col s12">
+							<i class="material-icons prefix">local_phone</i>
+							<p:inputMask id="tel2" value="#{clienteController.cliente.telefone2}" mask="(99) 9-9999-999?9" />
+							<label for="tel2" data-error="Sobrenome Inválido" data-success="OK.">Telefone 2</label>
+						</div>
+						
+						<!-- input da task -->
+						<div class="input-field col s12">
+							<i class="material-icons prefix">mail</i>
+							<h:inputText id="email" value="#{clienteController.cliente.email}">
+							</h:inputText>
+							<label for="email"
+								data-error="email Inválido"
+								data-success="OK.">Email</label>
+						</div>
 
 					</div>
 					
@@ -123,13 +154,18 @@
 						</h:outputText>
 					</h:column>
 					<h:column>
-						<f:facet name="header">Status</f:facet>
-						<h:outputText value="#{cliente}">
+						<f:facet name="header">Telefone1</f:facet>
+						<h:outputText value="#{cliente.telefone1}">
 						</h:outputText>
 					</h:column>
 					<h:column>
-						<f:facet name="header">Data criação</f:facet>
-						<h:outputText value="#{cliente}">
+						<f:facet name="header">Telefone2</f:facet>
+						<h:outputText value="#{cliente.telefone2}">
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						<h:outputText value="#{cliente.email}">
 						</h:outputText>
 					</h:column>
 
@@ -137,11 +173,11 @@
 					<h:column>
 						<h:form>
 
-							<h:commandButton value="EDITAR"
-								action="#{taskController.editarTask}"
+							<h:commandButton value="VER"
+								action="#{clienteController.verCliente}"
 								styleClass="btn blue darken-1 col s9 m9">
-								<f:setPropertyActionListener value="#{task}"
-									target="#{taskController.task}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="#{cliente}"
+									target="#{clienteController.cliente}"></f:setPropertyActionListener>
 								<br />
 							</h:commandButton>
 
@@ -152,10 +188,10 @@
 					<h:column>
 						<h:form>
 							<h:commandButton value="Deletar"
-								action="#{taskController.deletaraTask}"
+								action="#{clienteController.deletarCliente}"
 								styleClass="btn blue darken-1 col s9 m9">
-								<f:setPropertyActionListener value="#{task}"
-									target="#{taskController.task}"></f:setPropertyActionListener>
+								<f:setPropertyActionListener value="#{cliente}"
+									target="#{clienteController.cliente}"></f:setPropertyActionListener>
 							</h:commandButton>
 
 						</h:form>
@@ -164,6 +200,10 @@
 				</h:dataTable>
 			</div>
 		</div>
+	</div>
+	
+	<div class="row">
+	<br/><br/><br/>
 	</div>
 
 

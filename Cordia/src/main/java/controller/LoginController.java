@@ -49,8 +49,8 @@ public class LoginController implements Serializable {
 			// Adicionar a pessoa na Session
 			sessao.setAttribute("admLogado", admFazendoLogin);
 
-			// encaminhar para a p�gina de sucesso
-			paginaDestino = "security/index.xhtml";
+			// encaminhar para a p�gina de sucessos
+			paginaDestino = "security/listaClientes.xhtml";
 		} else {
 			sessao.invalidate();
 

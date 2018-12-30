@@ -3,7 +3,8 @@ package model;
 public class Remedio {
 	
 	private int idRemedio;
-	private int nomeRemedio;
+	private int idCliente;
+	private String nomeRemedio;
 	
 	
 	
@@ -13,11 +14,17 @@ public class Remedio {
 	public void setIdRemedio(int idRemedio) {
 		this.idRemedio = idRemedio;
 	}
-	public int getNomeRemedio() {
+	public String getNomeRemedio() {
 		return nomeRemedio;
 	}
-	public void setNomeRemedio(int nomeRemedio) {
+	public void setNomeRemedio(String nomeRemedio) {
 		this.nomeRemedio = nomeRemedio;
+	}
+	public int getIdCliente() {
+		return idCliente;
+	}
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	

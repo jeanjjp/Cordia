@@ -1,8 +1,9 @@
 package test;
 
 import java.net.MalformedURLException;
-
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import model.Cliente;
 
@@ -29,7 +30,10 @@ public class test {
 		//teste de codigo
 		//Codigo c = new Codigo();
 		//System.out.println(c.gerarCodigo());
-
+		
+		Date dataEnvio = new java.sql.Date(System.currentTimeMillis());
+		System.out.println(dataEnvio);
+		
 	}
 
 }
